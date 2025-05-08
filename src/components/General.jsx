@@ -1,5 +1,10 @@
-export default function General({test}) {
+export default function General({firstName, lastName, telephone, email}) {
+    const fullName = firstName + " " + lastName
     return (
-        <p>{test}</p>
+        <>
+        <h2>{fullName}</h2>
+        <p>{telephone}</p>
+        <p>{email}</p>
+        </>
     )
 }
