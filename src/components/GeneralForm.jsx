@@ -6,7 +6,7 @@ export default function GeneralForm({
   onChange,
 }) {
   return (
-    <div className="generalForm">
+    <div className="generalForm" name="test">
       <div className="inputDiv">
         <label htmlFor="firstName">First Name: </label>
         <input
