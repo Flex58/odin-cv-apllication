@@ -4,6 +4,8 @@ import General from "./components/General";
 import GeneralForm from "./components/GeneralForm";
 import EducationForm from "./components/EducationForm";
 import Education from "./components/Education";
+import ExperienceForm from "./components/ExperienceForm";
+import Experience from "./components/Experience";
 
 function App() {
   const [isSubmit, setIsSubmit] = useState(false);
@@ -21,11 +23,24 @@ function App() {
   ]);
   const [submitEducation, setSubmitEducation] = useState(null);
 
+  const [experienceData, setExperienceData] = useState([
+    {
+      id: crypto.randomUUID(),
+      companyName: "",
+      position: "",
+      notes: "",
+      from: "",
+      to: "",
+    },
+  ]);
+  const [submitExperience, setSubmitExperience] = useState(null);
+
   function handleSubmit(e) {
     e.preventDefault();
     setIsSubmit(true);
     setSubmitGeneral(generalData);
     setSubmitEducation(educationData);
+    setSubmitExperience(experienceData);
   }
 
   function addButtonHandler(e) {
@@ -37,6 +52,19 @@ function App() {
           {
             id: crypto.randomUUID(),
             name: "",
+            notes: "",
+            from: "",
+            to: "",
+          },
+        ]);
+        break;
+      case "addExperience":
+        setExperienceData([
+          ...experienceData,
+          {
+            id: crypto.randomUUID(),
+            companyName: "",
+            position: "",
             notes: "",
             from: "",
             to: "",
@@ -68,11 +96,11 @@ function App() {
       case "educationForm":
         setEducationData(arrayDataUpdate(educationData, id, property, value));
         break;
+      case "experienceForm":
+        setExperienceData(arrayDataUpdate(experienceData, id, property, value));
+        break;
     }
   }
-  /*form handlers 
-  for education experience etc need state to be array or set to be able to add and remove panels.
-  make sure add button is independent so you can technically have 0 education or expirenece skills etc.*/
 
   return (
     <>
@@ -111,7 +139,34 @@ function App() {
         <button type="button" id="addEducation" onClick={addButtonHandler}>
           Add Education
         </button>
-        {/*Education*/}
+
+        {experienceData.map((item) => (
+          <div className="experienceDiv" key={item.id}>
+            <h2>Experience #{experienceData.indexOf(item) + 1}</h2>
+            <ExperienceForm
+              id={item.id}
+              companyName={item.companyName}
+              position={item.position}
+              notes={item.notes}
+              from={item.from}
+              to={item.to}
+              onChange={handleChange}
+            />
+            <button
+              id="removeExperience"
+              onClick={() => {
+                setExperienceData(
+                  experienceData.filter((a) => item.id !== a.id)
+                );
+              }}
+            >
+              Delete
+            </button>
+          </div>
+        ))}
+        <button type="button" id="addExperience" onClick={addButtonHandler}>
+          Add Experience
+        </button>
         {/*Experience*/}
         {/*Skills*/}
         <button type="submit">Submit</button>
@@ -125,16 +180,27 @@ function App() {
               telephone={submitGeneral.telephone}
               email={submitGeneral.email}
             />
-            {submitEducation.map(item => {
+            {submitEducation.map((item) => {
               return (
                 <Education
-                name={item.name}
-                notes={item.notes}
-                from={item.from}
-                to={item.to}
-              />
-              )
+                  name={item.name}
+                  notes={item.notes}
+                  from={item.from}
+                  to={item.to}
+                />
+              );
             })}
+          {submitExperience.map(item => {
+            return (
+              <Experience
+              companyName={item.companyName}
+              positon={item.position}
+              notes={item.notes}
+              from={item.from}
+              to={item.to}
+              />
+            )
+          })}
           </>
         )
         /*Switch Form Product visiblity?*/

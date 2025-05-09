@@ -1,19 +1,38 @@
-export default function EducationForm({ id, name, notes, from, to, onChange }) {
+export default function ExperienceForm({
+  id,
+  companyName,
+  position,
+  notes,
+  from,
+  to,
+  onChange,
+}) {
   return (
-    <div className="educationForm" name={id}>
+    <div className="experienceForm" name={id}>
       <div className="inputDiv">
-        <label htmlFor={"name" + id}>Name: </label>
+        <label htmlFor={"companyName" + id}>Company: </label>
         <input
           type="text"
-          id={"name" + id}
-          name="name"
-          value={name}
+          id={"companyName" + id}
+          name="companyName"
+          value={companyName}
+          onChange={onChange}
+        />
+      </div>
+      <div className="inputDiv">
+        <label htmlFor={"position" + id}>Position: </label>
+        <input
+          type="text"
+          id={"position" + id}
+          name="position"
+          value={position}
           onChange={onChange}
         />
       </div>
       <div className="inputDiv">
         <label htmlFor={"notes" + id}>Notes: </label>
         <textarea
+          type="field"
           id={"notes" + id}
           name="notes"
           value={notes}
@@ -27,12 +46,12 @@ export default function EducationForm({ id, name, notes, from, to, onChange }) {
           id={"from" + id}
           name="from"
           value={from}
-          placeholder="MM-YYYY, 04-2019...."
+          placeholder="MM-YYYY"
           onChange={onChange}
         />
       </div>
       <div className="inputDiv">
-        <label htmlFor={"name" + id}>Until: </label>
+        <label htmlFor={"to" + id}>To: </label>
         <input
           type="text"
           id={"to" + id}
