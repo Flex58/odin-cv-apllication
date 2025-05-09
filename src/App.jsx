@@ -6,6 +6,8 @@ import EducationForm from "./components/EducationForm";
 import Education from "./components/Education";
 import ExperienceForm from "./components/ExperienceForm";
 import Experience from "./components/Experience";
+import SkillsForm from "./components/SkillsForm";
+import Skills from "./components/Skills";
 
 function App() {
   const [isSubmit, setIsSubmit] = useState(false);
@@ -35,12 +37,23 @@ function App() {
   ]);
   const [submitExperience, setSubmitExperience] = useState(null);
 
+  const [skillsData, setSkillsData] = useState([
+    {
+      id: crypto.randomUUID(),
+      skillName: "",
+      skillLevel: "",
+      skillDescription: "",
+    },
+  ]);
+  const [submitSkills, setSubmitSkills] = useState(null);
+
   function handleSubmit(e) {
     e.preventDefault();
     setIsSubmit(true);
     setSubmitGeneral(generalData);
     setSubmitEducation(educationData);
     setSubmitExperience(experienceData);
+    setSubmitSkills(skillsData);
   }
 
   function addButtonHandler(e) {
@@ -71,6 +84,17 @@ function App() {
           },
         ]);
         break;
+      case "addSkills":
+        setSkillsData([
+          ...skillsData,
+          {
+            id: crypto.randomUUID(),
+            skillName: "",
+            skillLevel: "",
+            skillDescription: "",
+          },
+        ]);
+        break;
     }
   }
 
@@ -98,6 +122,9 @@ function App() {
         break;
       case "experienceForm":
         setExperienceData(arrayDataUpdate(experienceData, id, property, value));
+        break;
+      case "skillsForm":
+        setSkillsData(arrayDataUpdate(skillsData, id, property, value));
         break;
     }
   }
@@ -167,13 +194,37 @@ function App() {
         <button type="button" id="addExperience" onClick={addButtonHandler}>
           Add Experience
         </button>
-        {/*Experience*/}
+        {skillsData.map((item) => (
+          <div className="skillsDiv" key={item.id}>
+            <h2>Skill #{skillsData.indexOf(item) + 1}</h2>
+            <SkillsForm
+              id={item.id}
+              skillName={item.skillName}
+              skillLevel={item.skillLevel}
+              skillDescription={item.skillDescription}
+              onChange={handleChange}
+            />
+            <button
+              id="removeSkills"
+              onClick={() => {
+                setSkillsData(skillsData.filter((a) => item.id !== a.id));
+              }}
+            >
+              Delete
+            </button>
+          </div>
+        ))}
+        <button type="button" id="addSkills" onClick={addButtonHandler}>
+          Add Skill
+        </button>
         {/*Skills*/}
         <button type="submit">Submit</button>
       </form>
       {
         isSubmit && (
           <>
+            <button onClick={() => setIsSubmit(false)}>Edit</button>
+
             <General
               firstName={submitGeneral.firstName}
               lastName={submitGeneral.lastName}
@@ -182,25 +233,40 @@ function App() {
             />
             {submitEducation.map((item) => {
               return (
-                <Education
-                  name={item.name}
-                  notes={item.notes}
-                  from={item.from}
-                  to={item.to}
-                />
+                <div key={"display" + item.id}>
+                  <Education
+                    name={item.name}
+                    notes={item.notes}
+                    from={item.from}
+                    to={item.to}
+                  />
+                </div>
               );
             })}
-          {submitExperience.map(item => {
-            return (
-              <Experience
-              companyName={item.companyName}
-              positon={item.position}
-              notes={item.notes}
-              from={item.from}
-              to={item.to}
-              />
-            )
-          })}
+            {submitExperience.map((item) => {
+              return (
+                <div key={"display" + item.id}>
+                  <Experience
+                    companyName={item.companyName}
+                    positon={item.position}
+                    notes={item.notes}
+                    from={item.from}
+                    to={item.to}
+                  />
+                </div>
+              );
+            })}
+            {submitSkills.map((item) => {
+              return (
+                <div key={"display" + item.id}>
+                  <Skills
+                    skillName={item.skillName}
+                    skillLevel={item.skillLevel}
+                    skillDescription={item.skillDescription}
+                  />
+                </div>
+              );
+            })}
           </>
         )
         /*Switch Form Product visiblity?*/
