@@ -131,146 +131,150 @@ function App() {
 
   return (
     <>
-      <form action="" onSubmit={handleSubmit}>
-        <div className="generalDiv">
-          <h2>General Data</h2>
-          <GeneralForm
-            onChange={handleChange}
-            firstName={generalData.firstName}
-            lastName={generalData.lastName}
-            telephone={generalData.telephone}
-            email={generalData.email}
+      {isSubmit ? (
+        <>
+          <button onClick={() => setIsSubmit(false)}>Edit</button>
+          <General
+            firstName={submitGeneral.firstName}
+            lastName={submitGeneral.lastName}
+            telephone={submitGeneral.telephone}
+            email={submitGeneral.email}
           />
-        </div>
-        {educationData.map((item) => (
-          <div className="educationDiv" key={item.id}>
-            <h2>Education #{educationData.indexOf(item) + 1}</h2>
-            <EducationForm
-              id={item.id}
-              name={item.name}
-              notes={item.notes}
-              from={item.from}
-              to={item.to}
-              onChange={handleChange}
-            />
-            <button
-              id="removeEducation"
-              onClick={() => {
-                setEducationData(educationData.filter((a) => item.id !== a.id));
-              }}
-            >
-              Delete
-            </button>
-          </div>
-        ))}
-        <button type="button" id="addEducation" onClick={addButtonHandler}>
-          Add Education
-        </button>
 
-        {experienceData.map((item) => (
-          <div className="experienceDiv" key={item.id}>
-            <h2>Experience #{experienceData.indexOf(item) + 1}</h2>
-            <ExperienceForm
-              id={item.id}
-              companyName={item.companyName}
-              position={item.position}
-              notes={item.notes}
-              from={item.from}
-              to={item.to}
-              onChange={handleChange}
-            />
-            <button
-              id="removeExperience"
-              onClick={() => {
-                setExperienceData(
-                  experienceData.filter((a) => item.id !== a.id)
-                );
-              }}
-            >
-              Delete
-            </button>
-          </div>
-        ))}
-        <button type="button" id="addExperience" onClick={addButtonHandler}>
-          Add Experience
-        </button>
-        {skillsData.map((item) => (
-          <div className="skillsDiv" key={item.id}>
-            <h2>Skill #{skillsData.indexOf(item) + 1}</h2>
-            <SkillsForm
-              id={item.id}
-              skillName={item.skillName}
-              skillLevel={item.skillLevel}
-              skillDescription={item.skillDescription}
-              onChange={handleChange}
-            />
-            <button
-              id="removeSkills"
-              onClick={() => {
-                setSkillsData(skillsData.filter((a) => item.id !== a.id));
-              }}
-            >
-              Delete
-            </button>
-          </div>
-        ))}
-        <button type="button" id="addSkills" onClick={addButtonHandler}>
-          Add Skill
-        </button>
-        {/*Skills*/}
-        <button type="submit">Submit</button>
-      </form>
-      {
-        isSubmit && (
-          <>
-            <button onClick={() => setIsSubmit(false)}>Edit</button>
+          {submitEducation.map((item) => {
+            return (
+              <div key={"display" + item.id}>
+                <Education
+                  name={item.name}
+                  notes={item.notes}
+                  from={item.from}
+                  to={item.to}
+                />
+              </div>
+            );
+          })}
 
-            <General
-              firstName={submitGeneral.firstName}
-              lastName={submitGeneral.lastName}
-              telephone={submitGeneral.telephone}
-              email={submitGeneral.email}
+          {submitExperience.map((item) => {
+            return (
+              <div key={"display" + item.id}>
+                <Experience
+                  companyName={item.companyName}
+                  positon={item.position}
+                  notes={item.notes}
+                  from={item.from}
+                  to={item.to}
+                />
+              </div>
+            );
+          })}
+
+          {submitSkills.map((item) => {
+            return (
+              <div key={"display" + item.id}>
+                <Skills
+                  skillName={item.skillName}
+                  skillLevel={item.skillLevel}
+                  skillDescription={item.skillDescription}
+                />
+              </div>
+            );
+          })}
+        </>
+      ) : (
+        <form action="" onSubmit={handleSubmit}>
+          <div className="generalDiv">
+            <h2>General Data</h2>
+            <GeneralForm
+              onChange={handleChange}
+              firstName={generalData.firstName}
+              lastName={generalData.lastName}
+              telephone={generalData.telephone}
+              email={generalData.email}
             />
-            {submitEducation.map((item) => {
-              return (
-                <div key={"display" + item.id}>
-                  <Education
-                    name={item.name}
-                    notes={item.notes}
-                    from={item.from}
-                    to={item.to}
-                  />
-                </div>
-              );
-            })}
-            {submitExperience.map((item) => {
-              return (
-                <div key={"display" + item.id}>
-                  <Experience
-                    companyName={item.companyName}
-                    positon={item.position}
-                    notes={item.notes}
-                    from={item.from}
-                    to={item.to}
-                  />
-                </div>
-              );
-            })}
-            {submitSkills.map((item) => {
-              return (
-                <div key={"display" + item.id}>
-                  <Skills
-                    skillName={item.skillName}
-                    skillLevel={item.skillLevel}
-                    skillDescription={item.skillDescription}
-                  />
-                </div>
-              );
-            })}
-          </>
-        )
-        /*Switch Form Product visiblity?*/
-      }
+          </div>
+
+          {educationData.map((item) => (
+            <div className="educationDiv" key={item.id}>
+              <h2>Education #{educationData.indexOf(item) + 1}</h2>
+              <EducationForm
+                id={item.id}
+                name={item.name}
+                notes={item.notes}
+                from={item.from}
+                to={item.to}
+                onChange={handleChange}
+              />
+              <button
+                id="removeEducation"
+                onClick={() => {
+                  setEducationData(
+                    educationData.filter((a) => item.id !== a.id)
+                  );
+                }}
+              >
+                Delete
+              </button>
+            </div>
+          ))}
+          <button type="button" id="addEducation" onClick={addButtonHandler}>
+            Add Education
+          </button>
+
+          {experienceData.map((item) => (
+            <div className="experienceDiv" key={item.id}>
+              <h2>Experience #{experienceData.indexOf(item) + 1}</h2>
+              <ExperienceForm
+                id={item.id}
+                companyName={item.companyName}
+                position={item.position}
+                notes={item.notes}
+                from={item.from}
+                to={item.to}
+                onChange={handleChange}
+              />
+              <button
+                id="removeExperience"
+                onClick={() => {
+                  setExperienceData(
+                    experienceData.filter((a) => item.id !== a.id)
+                  );
+                }}
+              >
+                Delete
+              </button>
+            </div>
+          ))}
+          <button type="button" id="addExperience" onClick={addButtonHandler}>
+            Add Experience
+          </button>
+
+          {skillsData.map((item) => (
+            <div className="skillsDiv" key={item.id}>
+              <h2>Skill #{skillsData.indexOf(item) + 1}</h2>
+              <SkillsForm
+                id={item.id}
+                skillName={item.skillName}
+                skillLevel={item.skillLevel}
+                skillDescription={item.skillDescription}
+                onChange={handleChange}
+              />
+              <button
+                id="removeSkills"
+                onClick={() => {
+                  setSkillsData(skillsData.filter((a) => item.id !== a.id));
+                }}
+              >
+                Delete
+              </button>
+            </div>
+          ))}
+          <button type="button" id="addSkills" onClick={addButtonHandler}>
+            Add Skill
+          </button>
+
+          <button type="submit">Submit</button>
+        </form>
+      )}
     </>
   );
 }
