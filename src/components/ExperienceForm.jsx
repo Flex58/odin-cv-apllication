@@ -51,7 +51,7 @@ export default function ExperienceForm({
         />
       </div>
       <div className="inputDiv">
-        <label htmlFor={"to" + id}>To: </label>
+        <label htmlFor={"to" + id}>Until: </label>
         <input
           type="text"
           id={"to" + id}
