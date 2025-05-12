@@ -21,7 +21,14 @@ function App() {
   const [submitGeneral, setSubmitGeneral] = useState(null);
 
   const [educationData, setEducationData] = useState([
-    { id: crypto.randomUUID(), name: "", notes: "", from: "", to: "" },
+    {
+      id: crypto.randomUUID(),
+      name: "",
+      notes: "",
+      from: "",
+      to: "",
+      isVisible: false,
+    },
   ]);
   const [submitEducation, setSubmitEducation] = useState(null);
 
@@ -33,6 +40,7 @@ function App() {
       notes: "",
       from: "",
       to: "",
+      isVisible: false,
     },
   ]);
   const [submitExperience, setSubmitExperience] = useState(null);
@@ -43,6 +51,7 @@ function App() {
       skillName: "",
       skillLevel: "",
       skillDescription: "",
+      isVisible: false,
     },
   ]);
   const [submitSkills, setSubmitSkills] = useState(null);
@@ -68,6 +77,7 @@ function App() {
             notes: "",
             from: "",
             to: "",
+            isVisible: true,
           },
         ]);
         break;
@@ -81,6 +91,7 @@ function App() {
             notes: "",
             from: "",
             to: "",
+            isVisible: true,
           },
         ]);
         break;
@@ -92,6 +103,7 @@ function App() {
             skillName: "",
             skillLevel: "",
             skillDescription: "",
+            isVisible: true,
           },
         ]);
         break;
@@ -140,7 +152,6 @@ function App() {
             telephone={submitGeneral.telephone}
             email={submitGeneral.email}
           />
-
           {submitEducation.map((item) => {
             return (
               <div key={"display" + item.id}>
@@ -194,26 +205,51 @@ function App() {
           </div>
 
           {educationData.map((item) => (
-            <div className="educationDiv" key={item.id}>
-              <h2>Education #{educationData.indexOf(item) + 1}</h2>
-              <EducationForm
-                id={item.id}
-                name={item.name}
-                notes={item.notes}
-                from={item.from}
-                to={item.to}
-                onChange={handleChange}
-              />
+            <div
+              className="educationDiv cardDiv"
+              name="isVisible"
+              key={item.id}
+            >
               <button
-                id="removeEducation"
-                onClick={() => {
+                type="button"
+                className="headerDiv"
+                onClick={() =>
                   setEducationData(
-                    educationData.filter((a) => item.id !== a.id)
-                  );
-                }}
+                    arrayDataUpdate(
+                      educationData,
+                      item.id,
+                      "isVisible",
+                      !item.isVisible
+                    )
+                  )
+                }
               >
-                Delete
+                <h2>Education #{educationData.indexOf(item) + 1}</h2>
+                <img src="null" alt="expand-icon" />
+                <hr />
               </button>
+              <div className={`formWrapper ${item.isVisible ? "open" : ""}`}>
+                <div className="formContent">
+                  <EducationForm
+                    id={item.id}
+                    name={item.name}
+                    notes={item.notes}
+                    from={item.from}
+                    to={item.to}
+                    onChange={handleChange}
+                  />
+                  <button
+                    id="removeEducation"
+                    onClick={() => {
+                      setEducationData(
+                        educationData.filter((a) => item.id !== a.id)
+                      );
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
             </div>
           ))}
           <button type="button" id="addEducation" onClick={addButtonHandler}>
@@ -221,27 +257,48 @@ function App() {
           </button>
 
           {experienceData.map((item) => (
-            <div className="experienceDiv" key={item.id}>
-              <h2>Experience #{experienceData.indexOf(item) + 1}</h2>
-              <ExperienceForm
-                id={item.id}
-                companyName={item.companyName}
-                position={item.position}
-                notes={item.notes}
-                from={item.from}
-                to={item.to}
-                onChange={handleChange}
-              />
+            <div className="experienceDiv cardDiv" key={item.id}>
               <button
-                id="removeExperience"
-                onClick={() => {
+                type="button"
+                className="headerDiv"
+                onClick={() =>
                   setExperienceData(
-                    experienceData.filter((a) => item.id !== a.id)
-                  );
-                }}
+                    arrayDataUpdate(
+                      experienceData,
+                      item.id,
+                      "isVisible",
+                      !item.isVisible
+                    )
+                  )
+                }
               >
-                Delete
+                <h2>Experience #{experienceData.indexOf(item) + 1}</h2>
+                <img src="null" alt="expand-icon" />
+                <hr />
               </button>
+              <div className={`formWrapper ${item.isVisible ? "open" : ""}`}>
+                <div className="formContent">
+                  <ExperienceForm
+                    id={item.id}
+                    companyName={item.companyName}
+                    position={item.position}
+                    notes={item.notes}
+                    from={item.from}
+                    to={item.to}
+                    onChange={handleChange}
+                  />
+                  <button
+                    id="removeExperience"
+                    onClick={() => {
+                      setExperienceData(
+                        experienceData.filter((a) => item.id !== a.id)
+                      );
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
             </div>
           ))}
           <button type="button" id="addExperience" onClick={addButtonHandler}>
@@ -249,23 +306,46 @@ function App() {
           </button>
 
           {skillsData.map((item) => (
-            <div className="skillsDiv" key={item.id}>
-              <h2>Skill #{skillsData.indexOf(item) + 1}</h2>
-              <SkillsForm
-                id={item.id}
-                skillName={item.skillName}
-                skillLevel={item.skillLevel}
-                skillDescription={item.skillDescription}
-                onChange={handleChange}
-              />
+            <div className="skillsDiv cardDiv" key={item.id}>
               <button
-                id="removeSkills"
-                onClick={() => {
-                  setSkillsData(skillsData.filter((a) => item.id !== a.id));
-                }}
+                type="button"
+                className="headerDiv"
+                onClick={() =>
+                  setSkillsData(
+                    arrayDataUpdate(
+                      skillsData,
+                      item.id,
+                      "isVisible",
+                      !item.isVisible
+                    )
+                  )
+                }
               >
-                Delete
+                <h2>Skill #{skillsData.indexOf(item) + 1}</h2>
+                <img src="null" alt="expand-icon" />
               </button>
+              <div
+                className={item.isVisible ? "formWrapper open" : "formWrapper"}
+              >
+                <div className="formContent">
+                  <hr />
+                  <SkillsForm
+                    id={item.id}
+                    skillName={item.skillName}
+                    skillLevel={item.skillLevel}
+                    skillDescription={item.skillDescription}
+                    onChange={handleChange}
+                  />
+                  <button
+                    id="removeSkills"
+                    onClick={() => {
+                      setSkillsData(skillsData.filter((a) => item.id !== a.id));
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
             </div>
           ))}
           <button type="button" id="addSkills" onClick={addButtonHandler}>
