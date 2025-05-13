@@ -8,6 +8,8 @@ import ExperienceForm from "./components/ExperienceForm";
 import Experience from "./components/Experience";
 import SkillsForm from "./components/SkillsForm";
 import Skills from "./components/Skills";
+import Icon from "@mdi/react";
+import { mdiChevronDown, mdiChevronUp, mdiTrashCanOutline } from "@mdi/js";
 
 function App() {
   const [isSubmit, setIsSubmit] = useState(false);
@@ -121,10 +123,11 @@ function App() {
   }
 
   function handleChange(e) {
-    const parent = e.target.parentElement.parentElement.className;
+    const parent = e.target.parentElement.parentElement.classList[0];
     const id = e.target.parentElement.parentElement.getAttribute("name");
     const property = e.target.name;
     const value = e.target.value;
+    console.log(parent)
     switch (parent) {
       case "generalForm":
         setGeneralData({ ...generalData, [property]: value });
@@ -193,8 +196,9 @@ function App() {
         </>
       ) : (
         <form action="" onSubmit={handleSubmit}>
-          <div className="generalDiv">
+          <div className="generalDiv cardDiv">
             <h2>General Data</h2>
+            <hr />
             <GeneralForm
               onChange={handleChange}
               firstName={generalData.firstName}
@@ -225,7 +229,11 @@ function App() {
                 }
               >
                 <h2>Education #{educationData.indexOf(item) + 1}</h2>
-                <img src="null" alt="expand-icon" />
+                <Icon
+                  path={item.isVisible ? mdiChevronUp : mdiChevronDown}
+                  title={item.isVisible ? "collapse button" : "expand button"}
+                  size={1}
+                />
                 <hr />
               </button>
               <div className={`formWrapper ${item.isVisible ? "open" : ""}`}>
@@ -240,13 +248,14 @@ function App() {
                   />
                   <button
                     id="removeEducation"
+                    className="deleteBtn"
                     onClick={() => {
                       setEducationData(
                         educationData.filter((a) => item.id !== a.id)
                       );
                     }}
                   >
-                    Delete
+                    <Icon path={mdiTrashCanOutline} size={1} color={"red"} title={"delete button"}/>
                   </button>
                 </div>
               </div>
@@ -273,7 +282,11 @@ function App() {
                 }
               >
                 <h2>Experience #{experienceData.indexOf(item) + 1}</h2>
-                <img src="null" alt="expand-icon" />
+                <Icon
+                  path={item.isVisible ? mdiChevronUp : mdiChevronDown}
+                  title={item.isVisible ? "collapse button" : "expand button"}
+                  size={1}
+                />
                 <hr />
               </button>
               <div className={`formWrapper ${item.isVisible ? "open" : ""}`}>
@@ -289,13 +302,14 @@ function App() {
                   />
                   <button
                     id="removeExperience"
+                    className="deleteBtn"
                     onClick={() => {
                       setExperienceData(
                         experienceData.filter((a) => item.id !== a.id)
                       );
                     }}
                   >
-                    Delete
+                    <Icon path={mdiTrashCanOutline} size={1} color={"red"} title={"delete button"}/>
                   </button>
                 </div>
               </div>
@@ -322,13 +336,17 @@ function App() {
                 }
               >
                 <h2>Skill #{skillsData.indexOf(item) + 1}</h2>
-                <img src="null" alt="expand-icon" />
+                <Icon
+                  path={item.isVisible ? mdiChevronUp : mdiChevronDown}
+                  title={item.isVisible ? "collapse button" : "expand button"}
+                  size={1}
+                />
+                <hr />
               </button>
               <div
                 className={item.isVisible ? "formWrapper open" : "formWrapper"}
               >
                 <div className="formContent">
-                  <hr />
                   <SkillsForm
                     id={item.id}
                     skillName={item.skillName}
@@ -338,11 +356,12 @@ function App() {
                   />
                   <button
                     id="removeSkills"
+                    className="deleteBtn"
                     onClick={() => {
                       setSkillsData(skillsData.filter((a) => item.id !== a.id));
                     }}
                   >
-                    Delete
+                    <Icon path={mdiTrashCanOutline} size={1} color={"red"} title={"delete button"}/>
                   </button>
                 </div>
               </div>

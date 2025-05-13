@@ -6,8 +6,8 @@ export default function GeneralForm({
   onChange,
 }) {
   return (
-    <div className="generalForm" name="test">
-      <div className="inputDiv">
+    <div className="generalForm formDiv" name="test">
+      <div className="inputDiv fromDiv">
         <label htmlFor="firstName">First Name: </label>
         <input
           type="text"
@@ -17,7 +17,7 @@ export default function GeneralForm({
           onChange={onChange}
         />
       </div>
-      <div className="inputDiv">
+      <div className="inputDiv toDiv">
         <label htmlFor="lastName">Last Name: </label>
         <input
           type="text"
@@ -27,7 +27,7 @@ export default function GeneralForm({
           onChange={onChange}
         />
       </div>
-      <div className="inputDiv">
+      <div className="inputDiv fromDiv">
         <label htmlFor="telephone">Telephone: </label>
         <input
           type="tel"
@@ -37,7 +37,7 @@ export default function GeneralForm({
           onChange={onChange}
         />
       </div>
-      <div className="inputDiv">
+      <div className="inputDiv toDiv">
         <label htmlFor="email">Email: </label>
         <input
           type="email"

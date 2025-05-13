@@ -8,7 +8,7 @@ export default function ExperienceForm({
   onChange,
 }) {
   return (
-    <div className="experienceForm" name={id}>
+    <div className="experienceForm formDiv" name={id}>
       <div className="inputDiv">
         <label htmlFor={"companyName" + id}>Company: </label>
         <input
@@ -29,7 +29,7 @@ export default function ExperienceForm({
           onChange={onChange}
         />
       </div>
-      <div className="inputDiv">
+      <div className="inputDiv textareaDiv">
         <label htmlFor={"notes" + id}>Notes: </label>
         <textarea
           type="field"
@@ -39,7 +39,7 @@ export default function ExperienceForm({
           onChange={onChange}
         />
       </div>
-      <div className="inputDiv">
+      <div className="inputDiv fromDiv">
         <label htmlFor={"from" + id}>From: </label>
         <input
           type="text"
@@ -50,7 +50,7 @@ export default function ExperienceForm({
           onChange={onChange}
         />
       </div>
-      <div className="inputDiv">
+      <div className="inputDiv toDiv">
         <label htmlFor={"to" + id}>Until: </label>
         <input
           type="text"

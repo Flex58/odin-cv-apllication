@@ -6,7 +6,7 @@ export default function SkillsForm({
   onChange,
 }) {
   return (
-    <div className="skillsForm" name={id}>
+    <div className="skillsForm formDiv" name={id}>
       <div className="inputDiv">
         <label htmlFor={"skillName" + id}>Skill: </label>
         <input
@@ -28,9 +28,9 @@ export default function SkillsForm({
           onChange={onChange}
         />
       </div>
-      <div className="inputDiv">
+      <div className="inputDiv ">
         <label htmlFor={"skillDescription" + id}>Description: </label>
-        <input
+        <textarea
           type="text"
           id={"skillDescription" + id}
           name="skillDescription"
