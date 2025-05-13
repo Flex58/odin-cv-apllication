@@ -90,3 +90,17 @@ hr {
 .deleteBtn:hover {
   border-color: red;
 }
+
+.addBtn {
+  border-radius: 1em;
+  padding: 0 .5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.submitBtn {
+  margin-top: 2em;
+  border-radius: .5em;
+}

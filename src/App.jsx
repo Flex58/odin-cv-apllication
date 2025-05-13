@@ -9,7 +9,12 @@ import Experience from "./components/Experience";
 import SkillsForm from "./components/SkillsForm";
 import Skills from "./components/Skills";
 import Icon from "@mdi/react";
-import { mdiChevronDown, mdiChevronUp, mdiTrashCanOutline } from "@mdi/js";
+import {
+  mdiChevronDown,
+  mdiChevronUp,
+  mdiTrashCanOutline,
+  mdiPlus,
+} from "@mdi/js";
 
 function App() {
   const [isSubmit, setIsSubmit] = useState(false);
@@ -68,7 +73,7 @@ function App() {
   }
 
   function addButtonHandler(e) {
-    const btn = e.target.id;
+    const btn = e.target.closest("button").id;
     switch (btn) {
       case "addEducation":
         setEducationData([
@@ -127,7 +132,6 @@ function App() {
     const id = e.target.parentElement.parentElement.getAttribute("name");
     const property = e.target.name;
     const value = e.target.value;
-    console.log(parent)
     switch (parent) {
       case "generalForm":
         setGeneralData({ ...generalData, [property]: value });
@@ -148,7 +152,7 @@ function App() {
     <>
       {isSubmit ? (
         <>
-          <button onClick={() => setIsSubmit(false)}>Edit</button>
+          <button onClick={() => setIsSubmit(false)} className="submitBtn">Edit</button>
           <General
             firstName={submitGeneral.firstName}
             lastName={submitGeneral.lastName}
@@ -255,14 +259,20 @@ function App() {
                       );
                     }}
                   >
-                    <Icon path={mdiTrashCanOutline} size={1} color={"red"} title={"delete button"}/>
+                    <Icon
+                      path={mdiTrashCanOutline}
+                      size={1}
+                      color={"red"}
+                      title={"delete button"}
+                    />
                   </button>
                 </div>
               </div>
             </div>
           ))}
-          <button type="button" id="addEducation" onClick={addButtonHandler}>
-            Add Education
+          <button type="button" id="addEducation" className="addBtn" onClick={addButtonHandler}>
+            <Icon path={mdiPlus} size={1} color={"#646cff"} />
+            <p>Education</p>
           </button>
 
           {experienceData.map((item) => (
@@ -309,14 +319,20 @@ function App() {
                       );
                     }}
                   >
-                    <Icon path={mdiTrashCanOutline} size={1} color={"red"} title={"delete button"}/>
+                    <Icon
+                      path={mdiTrashCanOutline}
+                      size={1}
+                      color={"red"}
+                      title={"delete button"}
+                    />
                   </button>
                 </div>
               </div>
             </div>
           ))}
-          <button type="button" id="addExperience" onClick={addButtonHandler}>
-            Add Experience
+          <button type="button" id="addExperience" className="addBtn" onClick={addButtonHandler}>
+            <Icon path={mdiPlus} size={1} color={"#646cff"} />
+            <p>Experience</p>
           </button>
 
           {skillsData.map((item) => (
@@ -361,17 +377,23 @@ function App() {
                       setSkillsData(skillsData.filter((a) => item.id !== a.id));
                     }}
                   >
-                    <Icon path={mdiTrashCanOutline} size={1} color={"red"} title={"delete button"}/>
+                    <Icon
+                      path={mdiTrashCanOutline}
+                      size={1}
+                      color={"red"}
+                      title={"delete button"}
+                    />
                   </button>
                 </div>
               </div>
             </div>
           ))}
-          <button type="button" id="addSkills" onClick={addButtonHandler}>
-            Add Skill
+          <button type="button" id="addSkills" className="addBtn" onClick={addButtonHandler}>
+            <Icon path={mdiPlus} size={1} color={"#646cff"} />
+            <p>Skills</p>
           </button>
 
-          <button type="submit">Submit</button>
+          <button type="submit" className="submitBtn">Submit</button>
         </form>
       )}
     </>

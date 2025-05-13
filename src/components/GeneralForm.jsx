@@ -10,6 +10,7 @@ export default function GeneralForm({
       <div className="inputDiv fromDiv">
         <label htmlFor="firstName">First Name: </label>
         <input
+          required
           type="text"
           id="firstName"
           name="firstName"
@@ -20,6 +21,7 @@ export default function GeneralForm({
       <div className="inputDiv toDiv">
         <label htmlFor="lastName">Last Name: </label>
         <input
+          required
           type="text"
           id="lastName"
           name="lastName"
@@ -30,6 +32,7 @@ export default function GeneralForm({
       <div className="inputDiv fromDiv">
         <label htmlFor="telephone">Telephone: </label>
         <input
+          required
           type="tel"
           id="telephone"
           name="telephone"
@@ -40,6 +43,7 @@ export default function GeneralForm({
       <div className="inputDiv toDiv">
         <label htmlFor="email">Email: </label>
         <input
+          required
           type="email"
           id="email"
           name="email"
