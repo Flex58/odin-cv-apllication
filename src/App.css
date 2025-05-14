@@ -7,7 +7,7 @@
 }
 h1,
 h2,
-h3, 
+h3,
 p {
   margin: 0;
   padding: 0;
@@ -23,14 +23,14 @@ p {
 .formWrapper {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows .25s ease-out;
+  transition: grid-template-rows 0.25s ease-out;
 }
 
 .formWrapper.open {
   grid-template-rows: 1fr;
 }
 
-.formContent{
+.formContent {
   overflow: hidden;
 }
 
@@ -42,7 +42,7 @@ p {
 }
 
 .infoContainer {
-  display:  flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   padding-right: 2em;
@@ -50,9 +50,9 @@ p {
 
 input,
 textarea {
-  border: .5px solid #646cff6b;
+  border: 0.5px solid #646cff6b;
   border-radius: 1em;
-  padding-left: .5em;
+  padding-left: 0.5em;
 }
 
 input:focus,
@@ -64,17 +64,16 @@ textarea:focus {
 .formDiv {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: .75em;
+  gap: 0.75em;
 }
 
 .inputDiv {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: .25em;
+  gap: 0.25em;
   grid-column: 1/3;
 }
-
 
 .inputDiv.fromDiv {
   grid-column: 1/2;
@@ -91,7 +90,7 @@ hr {
 
 .deleteBtn {
   border-radius: 1em;
-  padding: .5em;
+  padding: 0.5em;
   background-color: #242424;
   position: relative;
   left: 40%;
@@ -103,7 +102,7 @@ hr {
 
 .addBtn {
   border-radius: 1em;
-  padding: .25em .5em;
+  padding: 0.25em 0.5em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,11 +110,11 @@ hr {
 }
 
 .submitBtn {
-  gap: .5em;
+  gap: 0.5em;
   display: flex;
   margin: auto;
   margin-top: 2em;
-  border-radius: .5em;
+  border-radius: 0.5em;
 }
 
 .generalContainer {
@@ -131,7 +130,7 @@ hr {
   display: flex;
   flex-direction: column;
   padding-bottom: 1em;
-  gap: .25em;
+  gap: 0.25em;
 }
 
 .positionContainer {
@@ -164,6 +163,15 @@ h1 {
 }
 
 .generalContainer h1 {
-  padding-bottom: .25em;
+  padding-bottom: 0.25em;
   font-size: 3rem;
+}
+
+@media (max-width: 574px) {
+  .inputDiv.fromDiv {
+    grid-column: 1/3;
+  }
+  .inputDiv.toDiv {
+    grid-column: 1/3;
+  }
 }
