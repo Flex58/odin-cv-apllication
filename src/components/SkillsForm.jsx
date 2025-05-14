@@ -24,7 +24,7 @@ export default function SkillsForm({
           id={"skillLevel" + id}
           name="skillLevel"
           value={skillLevel}
-          placeholder="Years active, Proficiency leve, etc..."
+          placeholder="Years active, Proficiency..."
           onChange={onChange}
         />
       </div>

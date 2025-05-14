@@ -14,6 +14,7 @@ import {
   mdiChevronUp,
   mdiTrashCanOutline,
   mdiPlus,
+  mdiFileDocumentEditOutline,
 } from "@mdi/js";
 
 function App() {
@@ -152,13 +153,14 @@ function App() {
     <>
       {isSubmit ? (
         <>
-          <button onClick={() => setIsSubmit(false)} className="submitBtn">Edit</button>
           <General
             firstName={submitGeneral.firstName}
             lastName={submitGeneral.lastName}
             telephone={submitGeneral.telephone}
             email={submitGeneral.email}
           />
+          <h1>Education</h1>
+          <hr />
           {submitEducation.map((item) => {
             return (
               <div key={"display" + item.id}>
@@ -172,6 +174,8 @@ function App() {
             );
           })}
 
+          <h1>Experience</h1>
+          <hr />
           {submitExperience.map((item) => {
             return (
               <div key={"display" + item.id}>
@@ -186,6 +190,8 @@ function App() {
             );
           })}
 
+          <h1>Skills</h1>
+          <hr />
           {submitSkills.map((item) => {
             return (
               <div key={"display" + item.id}>
@@ -197,6 +203,10 @@ function App() {
               </div>
             );
           })}
+          <button onClick={() => setIsSubmit(false)} className="submitBtn">
+            <Icon path={mdiFileDocumentEditOutline} size={1} />
+            <p>Edit</p>
+          </button>
         </>
       ) : (
         <form action="" onSubmit={handleSubmit}>
@@ -270,7 +280,12 @@ function App() {
               </div>
             </div>
           ))}
-          <button type="button" id="addEducation" className="addBtn" onClick={addButtonHandler}>
+          <button
+            type="button"
+            id="addEducation"
+            className="addBtn"
+            onClick={addButtonHandler}
+          >
             <Icon path={mdiPlus} size={1} color={"#646cff"} />
             <p>Education</p>
           </button>
@@ -330,7 +345,12 @@ function App() {
               </div>
             </div>
           ))}
-          <button type="button" id="addExperience" className="addBtn" onClick={addButtonHandler}>
+          <button
+            type="button"
+            id="addExperience"
+            className="addBtn"
+            onClick={addButtonHandler}
+          >
             <Icon path={mdiPlus} size={1} color={"#646cff"} />
             <p>Experience</p>
           </button>
@@ -388,12 +408,19 @@ function App() {
               </div>
             </div>
           ))}
-          <button type="button" id="addSkills" className="addBtn" onClick={addButtonHandler}>
+          <button
+            type="button"
+            id="addSkills"
+            className="addBtn"
+            onClick={addButtonHandler}
+          >
             <Icon path={mdiPlus} size={1} color={"#646cff"} />
             <p>Skills</p>
           </button>
 
-          <button type="submit" className="submitBtn">Submit</button>
+          <button type="submit" className="submitBtn">
+            Submit
+          </button>
         </form>
       )}
     </>

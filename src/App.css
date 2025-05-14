@@ -5,6 +5,13 @@
   text-align: center;
   box-sizing: border-box;
 }
+h1,
+h2,
+h3, 
+p {
+  margin: 0;
+  padding: 0;
+}
 
 .headerDiv {
   border: none;
@@ -30,13 +37,15 @@
 .cardDiv {
   border-radius: 1em;
   padding: 0 1em;
+  padding-top: 1em;
   margin-bottom: 1em;
 }
 
 .infoContainer {
   display:  flex;
   align-items: center;
-  gap: 1em;
+  justify-content: space-between;
+  padding-right: 2em;
 }
 
 input,
@@ -76,6 +85,7 @@ textarea:focus {
 }
 
 hr {
+  width: 100%;
   color: #646cff6b;
 }
 
@@ -93,7 +103,7 @@ hr {
 
 .addBtn {
   border-radius: 1em;
-  padding: 0 .5em;
+  padding: .25em .5em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -101,6 +111,59 @@ hr {
 }
 
 .submitBtn {
+  gap: .5em;
+  display: flex;
+  margin: auto;
   margin-top: 2em;
   border-radius: .5em;
+}
+
+.generalContainer {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1em;
+  gap: 1em;
+}
+
+.experienceContainer,
+.educationContainer,
+.skillsContainer {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1em;
+  gap: .25em;
+}
+
+.positionContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.positionContainer p,
+.positionContainer h2 {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.skillsContainer .positionContainer {
+  flex-direction: column;
+}
+
+.positionContainer p {
+  align-self: flex-end;
+  font-size: 1.2rem;
+}
+
+.positionContainer h2 {
+  align-self: flex-start;
+  padding-left: 1em;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+.generalContainer h1 {
+  padding-bottom: .25em;
+  font-size: 3rem;
 }

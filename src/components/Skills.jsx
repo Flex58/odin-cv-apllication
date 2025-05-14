@@ -1,9 +1,11 @@
 export default function Skills({ skillName, skillLevel, skillDescription }) {
   return (
-    <>
-      <p>{skillName}</p>
-      <p>{skillLevel}</p>
+    <div className="skillsContainer">
+      <div className="positionContainer">
+        <h2>{skillName}</h2>
+        <p>{skillLevel}</p>
+      </div>
       <p>{skillDescription}</p>
-    </>
+    </div>
   );
 }
